@@ -4,12 +4,12 @@ import MovieListFav from "./MovieListFav";
 import MovieListCard from "./MovieListCard";
 import MovieListGallery from "./MovieListGallery";
 import MovieListList from "./MovieListList";
-import { recommendMovieList } from "../data/recommendMovie";
+import { recommendMovieList } from "../../data/recommendMovie";
 import axios from "axios";
+import { API } from "../../data/api";
 
 const MovieList = ({ type }) => {
   const [movies, setMovies] = useState([]);
-  const API = "https://omdbapi.com/?apikey=ef297970";
 
   // index추천영화
   const recommendedMovies = async () => {
