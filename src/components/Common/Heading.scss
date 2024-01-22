@@ -1,0 +1,22 @@
+@import "../../scss/base.scss";
+
+.heading {
+  &.large {
+    font-size: 4.3rem;
+    font-weight: 800;
+    color: $white;
+  }
+  &.regular {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: $white;
+  }
+  &.small {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: $white;
+    &.light {
+      color: $gray11;
+    }
+  }
+}

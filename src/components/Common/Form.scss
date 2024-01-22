@@ -1,0 +1,115 @@
+@use "sass:list";
+@import "../../scss/base.scss";
+
+// 전체 input, select, textarea 공통설정
+$formSetting: (
+  "border": 1px solid rgba($white, 0.2),
+  "height": 5rem,
+  "paddingX": 2rem,
+  "backgroudColor": transparent,
+  "disalbedBGColor": transparent,
+  "readonlyBGColor": transparent,
+  "Color": $white,
+  // "placeholderColor": ,
+);
+// select 설정
+$select: (
+  "bgImg": "ico_select.svg",
+  "bgColor": transparent,
+  "bgPosition": 0,
+  "bgSize": 0,
+  "paddingLeft": 2rem,
+);
+
+// 체크박스, 라디오버튼 공통설정
+$checkboxRadioSetting: (
+  "color": $black,
+  "fontSize": 1.2rem,
+  "gap": 1rem,
+);
+// check,radio
+$checkboxRadio: (
+  1: (
+    "class": "checkbox-type1",
+    "offImg": "ico_check_off.svg",
+    "onImg": "ico_check_on.svg",
+    "width": 2.6rem,
+    "height": 2.6rem,
+  ),
+  2: (
+    "class": "radio-type1",
+    "offImg": "ico_check_off.svg",
+    "onImg": "ico_check2_on.svg",
+    "width": 1.8rem,
+    "height": 1.8rem,
+  ),
+  3: (
+    "class": "radio-type1",
+    "offImg": "ico_check_off.svg",
+    "onImg": "ico_check2_on.svg",
+    "width": 1.8rem,
+    "height": 1.8rem,
+  ),
+);
+
+@for $i from 1 through list.length($checkboxRadio) {
+  @include checkradio(map-get($checkboxRadio, $i, class));
+}
+
+// ------------------------------------------------------------------------
+
+%form {
+  border: map-get($formSetting, border);
+  height: map-get($formSetting, height);
+  box-sizing: border-box;
+  padding: 0 map-get($formSetting, paddingX);
+  background-color: map-get($formSetting, backgroudColor);
+  &:disabled {
+    background-color: map-get($formSetting, disalbedBGColor);
+  }
+  &[readonly] {
+    background-color: map-get($formSetting, readonlyBGColor);
+  }
+  &::placeholder {
+    color: map-get($formSetting, placeholderColor);
+  }
+}
+%label {
+  @include a11y-hidden;
+  + label {
+    display: inline-flex;
+    align-items: center;
+    color: map-get($checkboxRadioSetting, color);
+    font-size: map-get($checkboxRadioSetting, fontSize);
+    gap: map-get($checkboxRadioSetting, gap);
+  }
+}
+
+.select {
+  $sum: map-get($select, bgPosition) + map-get($select, bgSize) + map-get($select, paddingLeft);
+
+  @extend %form;
+  @include background(
+    #{map-get($select, bgImg)},
+    right #{map-get($select, bgPosition)} center,
+    #{map-get($select, bgColor)},
+    #{map-get($select, bgSize)} auto
+  );
+  padding: 0 $sum 0 map-get($select, paddingLeft);
+  appearance: none;
+  color: map-get($formSetting, Color);
+  option {
+    color: initial;
+  }
+}
+.input {
+  @extend %form;
+  min-width: 0;
+  width: var(--width, auto);
+  color: map-get($formSetting, Color);
+}
+.textarea {
+  @extend %form;
+  width: var(--width);
+  height: var(--height);
+}

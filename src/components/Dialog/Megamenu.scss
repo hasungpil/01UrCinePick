@@ -1,0 +1,72 @@
+@import "../../scss/base.scss";
+
+.megamenu {
+  @include position(f, left, -100vw, top, 0, 1001);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: $white;
+  counter-set: num;
+  // transition: left 0.3s;
+  .bg-mega {
+    @include background("mega.jpg", center, null, cover);
+    height: 100%;
+  }
+  .btn-close {
+    @include position(a, left, 10rem, top, 10rem);
+  }
+  &__list {
+    display: grid;
+    gap: 4rem;
+    padding: 10rem;
+  }
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    &::before {
+      content: counter(num);
+      counter-increment: num 1;
+      font-size: 1.5rem;
+      padding: 0.8rem 0 0;
+    }
+    &:last-child {
+      display: none;
+    }
+    a {
+      position: relative;
+      overflow: hidden;
+      color: $graydf;
+      padding: 0;
+      background: transparent;
+      outline: 0;
+      display: flex;
+      align-items: center;
+      position: relative;
+      white-space: nowrap;
+      font-size: 6rem;
+      font-weight: 900;
+      &::before {
+        position: absolute;
+        overflow: hidden;
+        content: attr(data-title);
+        width: 0;
+        color: $gray11;
+        transition: width 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        font-size: 6rem;
+        font-weight: 900;
+        line-height: 1;
+      }
+      &:hover {
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.m0auto {
+  width: $webCenterWidth;
+  margin: 0 auto;
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.a11y-hidden {
+  @include a11y-hidden;
+}
+
+body {
+  overflow-x: hidden;
+  background: $gray11;
+  &.--is-dialog {
+    overflow: hidden;
+  }
+}
+.container {
+  padding: 20rem 0 0;
+}
+.grid {
+  display: grid;
+  gap: 3rem;
+  &.col2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.white-block {
+  padding: 2rem;
+  background-color: rgba($white, 0.8);
+}

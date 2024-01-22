@@ -1,0 +1,149 @@
+@use "sass:list";
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+@import "../../scss/base.scss";
+
+$f-ico: "Material Symbols Outlined";
+$f-ico2: "bootstrap-icons";
+
+$buttonSize: (
+  1: (
+    "class": "regular",
+    "fontSize": 1.2rem,
+    "height": 5rem,
+    "border": 0,
+    "padding": 1rem,
+  ),
+  2: (
+    "class": "small",
+    "fontSize": 1.4rem,
+    "height": 4rem,
+    "border": 0.1rem,
+    "padding": 3rem,
+  ),
+);
+$buttonColor: (
+  1: (
+    "class": "pink",
+    "borderColor": $reddb,
+    "bgColor": $reddb,
+    "color": $white,
+  ),
+  2: (
+    "class": "white",
+    "borderColor": $black,
+    "bgColor": $white,
+    "color": $black,
+  ),
+);
+
+$buttonIcon: (
+  1: (
+    "direction": a,
+    "width": 1rem,
+    "height": 2rem,
+    "bgImg": "ico.svg",
+  ),
+  2: (
+    "direction": b,
+    "width": 1rem,
+    "height": 2rem,
+    "bgImg": "ico.svg",
+  ),
+);
+
+.btn {
+  @for $i from 1 through list.length($buttonSize) {
+    @include buttonSize(map-get($buttonSize, $i, class), $i);
+  }
+  @for $i from 1 through list.length($buttonColor) {
+    @include buttonColor(map-get($buttonColor, $i, class), $i);
+  }
+  @for $i from 1 through list.length($buttonIcon) {
+    @include buttonIcon($i);
+  }
+}
+
+.btn {
+  &-menu {
+    &::before {
+      content: "\e5d2";
+      font-family: $f-ico;
+      color: $white;
+      font-size: 2.5rem;
+    }
+  }
+  &-search {
+    &::before {
+      content: "\f52a";
+      font-family: $f-ico2;
+      color: $white;
+      font-size: 2rem;
+    }
+    .search & {
+      @include position(a, right, 0, top, 50%);
+      &::before {
+        font-size: 5rem;
+      }
+    }
+  }
+  &-insta {
+    &::before {
+      content: "\F437";
+      font-family: $f-ico2;
+      color: $white;
+      font-size: 1.5rem;
+    }
+  }
+  &-facebook {
+    &::before {
+      content: "\F344";
+      font-family: $f-ico2;
+      color: $white;
+      font-size: 1.5rem;
+    }
+  }
+  &-watcha {
+    &::before {
+      content: "\F21B";
+      font-family: $f-ico2;
+      color: $white;
+      font-size: 1.5rem;
+    }
+  }
+  &-close {
+    &::before {
+      content: "\F659";
+      font-family: $f-ico2;
+      color: $gray11;
+      font-size: 3rem;
+    }
+    .search & {
+      @include position(a, right, 18rem, top, 10rem);
+      transition: 0.5s;
+      &:hover {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  &-more {
+    display: block;
+    margin: 3rem auto 0;
+    padding: 1.4rem 2.1rem;
+    min-width: 15rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    background-color: $reddb;
+    color: $white;
+    transition: 0.5s;
+    &.--hide {
+      display: none;
+    }
+    .ad-block & {
+      width: 200px;
+    }
+    .visual & {
+      width: 100px;
+    }
+  }
+}
