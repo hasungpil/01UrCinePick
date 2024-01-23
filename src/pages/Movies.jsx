@@ -1,10 +1,11 @@
 import React from "react";
 import Heading from "../components/Common/Heading";
+import Visual from "../components/Common/Visual";
 
 const Movies = () => {
   return (
     <>
-      <Heading tag="h2" className={"sub-title"} />
+      <Visual></Visual>
     </>
   );
 };

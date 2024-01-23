@@ -4,30 +4,13 @@ import MovieListFav from "./MovieListFav";
 import MovieListCard from "./MovieListCard";
 import MovieListGallery from "./MovieListGallery";
 import MovieListList from "./MovieListList";
-import { recommendMovieList } from "../../data/recommendMovie";
-import axios from "axios";
-import { API } from "../../data/api";
+import { recommendedMovies } from "../../utils/fetch";
 
 const MovieList = ({ type }) => {
   const [movies, setMovies] = useState([]);
 
-  // index추천영화
-  const recommendedMovies = async () => {
-    try {
-      const apiResponses = await Promise.all(
-        recommendMovieList.map((id) => {
-          return axios.get(`${API}&i=${id}`);
-        })
-      );
-      const movieDataList = apiResponses.map((response) => response.data);
-      setMovies(movieDataList);
-    } catch (error) {
-      console.log("recommendedMovies Error : ", error);
-    }
-  };
-
   useEffect(() => {
-    recommendedMovies();
+    recommendedMovies(setMovies);
   }, []);
 
   // 리스트형태

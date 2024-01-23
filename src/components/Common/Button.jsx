@@ -1,14 +1,11 @@
 import React from "react";
 import "./Button.scss";
 
-const Button = ({ className, ariaLabel, text = "", onEvent }) => {
+const Button = ({ className, ariaLabel, text = "", ...props }) => {
   const isLabel = ariaLabel ? { "aria-label": ariaLabel } : {};
-  const handleEvent = () => {
-    onEvent && onEvent();
-  };
   return (
     <>
-      <button className={className} {...isLabel} onClick={handleEvent}>
+      <button className={className} {...isLabel} {...props}>
         {text}
       </button>
     </>

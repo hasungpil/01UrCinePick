@@ -5,7 +5,7 @@ import Sort from "../components/Main/Sort";
 import MovieList from "../components/MovieList/MovieList";
 
 const Main = () => {
-  const [isSort, setIsSort] = useState("");
+  const [isSort, setIsSort] = useState("gallery");
   const handleSortData = (sortValue) => {
     setIsSort(sortValue);
   };
@@ -17,7 +17,7 @@ const Main = () => {
           <Heading tag="h2" text="Recommended Movies" className="heading regular" />
           <Sort onSortOption={handleSortData} />
         </div>
-        {isSort ? <MovieList type={isSort} /> : <MovieList type="gallery" />}
+        <MovieList type={isSort} />
       </div>
     </>
   );

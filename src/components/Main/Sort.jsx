@@ -3,7 +3,6 @@ import Select from "../Common/Select";
 import "./Sort.scss";
 
 const Sort = ({ onSortOption }) => {
-  const [isSelected, setisSelected] = useState("");
   const optionArray = [
     {
       value: "gallery",
@@ -19,9 +18,8 @@ const Sort = ({ onSortOption }) => {
     },
   ];
   const handleSelect = (selectedOption) => {
-    setisSelected(selectedOption);
+    onSortOption(selectedOption);
   };
-  onSortOption(isSelected);
   return (
     <div className="align right sort">
       <Select placeholder="선택하세요" options={optionArray} onSelectOption={handleSelect} />

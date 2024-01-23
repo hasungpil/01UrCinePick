@@ -1,4 +1,4 @@
-export const recommendMovieList = [
+export const recommendMovieIds = [
   "tt1798709",
   "tt0206634",
   "tt2194499",
