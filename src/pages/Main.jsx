@@ -1,23 +1,30 @@
 import React, { useState } from "react";
 import Heading from "../components/Common/Heading";
 import DetailSearch from "../components/Main/DetailSearch";
-import Sort from "../components/Main/Sort";
 import MovieList from "../components/MovieList/MovieList";
+import Select from "../components/Common/Select";
+import { selectedTypes } from "../data/selectedType";
 
 const Main = () => {
-  const [isSort, setIsSort] = useState("gallery");
-  const handleSortData = (sortValue) => {
-    setIsSort(sortValue);
-  };
+  const [type, setType] = useState("gallery");
+
   return (
     <>
       <div className="m0auto">
         <DetailSearch />
         <div className="align both vm">
-          <Heading tag="h2" text="Recommended Movies" className="heading regular" />
-          <Sort onSortOption={handleSortData} />
+          <Heading
+            tag="h2"
+            text="Recommended Movies"
+            className="heading regular"
+          />
+          <Select
+            placeholder="선택하세요"
+            options={selectedTypes}
+            onChangeOption={setType}
+          />
         </div>
-        <MovieList type={isSort} />
+        <MovieList type={type} />
       </div>
     </>
   );

@@ -1,22 +1,18 @@
 import React from "react";
 import "./Select.scss";
 
-const Select = ({ placeholder, options = {}, onSelectOption }) => {
-  const handleOption = (e) => {
-    const selectedValue = e.target.value;
-    onSelectOption(selectedValue);
-  };
+const Select = ({ placeholder, options, onChangeOption }) => {
   return (
-    <>
-      <select className="select" onChange={handleOption}>
-        {placeholder && <option hidden>{placeholder}</option>}
-        {options.map((optionItem, index) => (
-          <option key={index} value={optionItem.value}>
-            {optionItem.text}
-          </option>
-        ))}
-      </select>
-    </>
+    //<div className="align right sort">
+    <select className="select" onChange={(e) => onChangeOption(e.target.value)}>
+      {placeholder && <option hidden>{placeholder}</option>}
+      {options.map(({ value, text }) => (
+        <option key={value} value={value}>
+          {text}
+        </option>
+      ))}
+    </select>
+    // </div>
   );
 };
 

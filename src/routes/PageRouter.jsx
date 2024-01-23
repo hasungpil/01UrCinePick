@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Main from "../pages/Main";
-import Search from "../pages/search";
+import Search from "../pages/Search";
 import Movies from "../pages/Movies";
 import Favorite from "../pages/Favorite";
 import About from "../pages/About";

@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./MovieList.scss";
 import MovieListFav from "./MovieListFav";
 import MovieListCard from "./MovieListCard";
 import MovieListGallery from "./MovieListGallery";
 import MovieListList from "./MovieListList";
 import { recommendedMovies } from "../../utils/fetch";
+import { MovieContext } from "../../context/MovieContext";
+import { useLocation } from "react-router-dom";
 
-const MovieList = ({ type }) => {
-  const [movies, setMovies] = useState([]);
+const MovieList = ({ type = "gallery" }) => {
+  const { movies, setMovies } = useContext(MovieContext);
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    recommendedMovies(setMovies);
-  }, []);
+    if (pathname === "/") {
+      recommendedMovies(setMovies);
+    }
+  }, [pathname, setMovies]);
 
   // 리스트형태
   const renderMovieList = () => {
