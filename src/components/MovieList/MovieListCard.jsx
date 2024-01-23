@@ -1,21 +1,25 @@
 import React from "react";
 
-const MovieListCard = () => {
+const MovieListCard = ({ movies }) => {
   return (
-    <li>
-      <a href="">
-        <div className="movie-list__info">
-          <div className="movie-list__poster">
-            <img
-              src="https://demo.gloriathemes.com/noxe/demo/wp-content/uploads/2020/02/title-image-12-1255x790.jpg"
-              alt=""
-            />
-          </div>
-          <div className="movie-list__title">제목</div>
-          <div className="movie-list__year">2024</div>
-        </div>
-      </a>
-    </li>
+    <>
+      {movies.map((movie) => {
+        const posterSize = movie.Poster.replace("X300", "X700");
+        return (
+          <li key={movie.imdbID} id={movie.imdbID}>
+            <a href="">
+              <div className="movie-list__info">
+                <div className="movie-list__poster">
+                  <img src={posterSize} alt="" />
+                </div>
+                <div className="movie-list__title">{movie.Title}</div>
+                <div className="movie-list__year">{movie.Year}</div>
+              </div>
+            </a>
+          </li>
+        );
+      })}
+    </>
   );
 };
 
