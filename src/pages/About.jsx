@@ -1,7 +1,7 @@
 import React from "react";
 import Heading from "../components/Common/Heading";
 
-const Search = () => {
+const About = () => {
   return (
     <>
       <Heading tag="h2" className={"sub-title"} />
@@ -9,4 +9,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default About;

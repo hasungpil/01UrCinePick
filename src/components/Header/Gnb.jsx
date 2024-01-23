@@ -1,24 +1,22 @@
 import React from "react";
 import "./Gnb.scss";
+import { Link } from "react-router-dom";
 
 const Gnb = () => {
   return (
     <nav>
       <ul className="gnb">
         <li>
-          <a href="">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="">Movies</a>
+          <Link to="/movies">Movies</Link>
         </li>
         <li>
-          <a href="">Favorite</a>
+          <Link to="/favorite">Favorite</Link>
         </li>
         <li>
-          <a href="">About</a>
-        </li>
-        <li>
-          <a href="">Search</a>
+          <Link to="/search">Search</Link>
         </li>
       </ul>
     </nav>
