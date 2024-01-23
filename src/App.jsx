@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="m0auto">
+      <main>
         <PageRouter />
       </main>
       <Footer />

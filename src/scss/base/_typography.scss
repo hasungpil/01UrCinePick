@@ -70,4 +70,8 @@ body {
     font-weight: 800;
     text-transform: uppercase;
   }
+  .visual & {
+    position: relative;
+    z-index: 10;
+  }
 }

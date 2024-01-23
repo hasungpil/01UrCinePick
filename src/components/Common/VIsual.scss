@@ -1,0 +1,22 @@
+@import "../../scss/base.scss";
+
+.visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 71.5rem;
+  img {
+    @include position(a, left, 0, top, 0, -1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &::after {
+    @include position(a, left, 0, top, 0);
+    content: "";
+    background-color: rgba($black, 0.5);
+    width: 100%;
+    height: 100%;
+  }
+}

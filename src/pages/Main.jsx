@@ -11,12 +11,14 @@ const Main = () => {
   };
   return (
     <>
-      <DetailSearch />
-      <div className="align both vm">
-        <Heading tag="h2" text="Recommended Movies" className="heading regular" />
-        <Sort onSortOption={handleSortData} />
+      <div className="m0auto">
+        <DetailSearch />
+        <div className="align both vm">
+          <Heading tag="h2" text="Recommended Movies" className="heading regular" />
+          <Sort onSortOption={handleSortData} />
+        </div>
+        {isSort ? <MovieList type={isSort} /> : <MovieList type="gallery" />}
       </div>
-      {isSort ? <MovieList type={isSort} /> : <MovieList type="gallery" />}
     </>
   );
 };
