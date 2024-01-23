@@ -55,9 +55,7 @@ const DetailSearch = () => {
 
   const serachMovies = async () => {
     try {
-      const responses = await axios.get(
-        `${API}${"&s=" + movieTitle}${"&y=" + isYear}${"&type=" + isType}`
-      );
+      const responses = await axios.get(`${API}${"&s=" + movieTitle}${"&y=" + isYear}${"&type=" + isType}`);
       console.log(responses);
     } catch (error) {
       console.log("searchMovie Error : ", error);
@@ -73,11 +71,7 @@ const DetailSearch = () => {
     <>
       <div className="detail-search">
         <Input type="search" className="input" placeholder="영화이름 입력" onEvent={handleTitle} />
-        {isYear === "direct" ? (
-          <Input type="number" className="input" placeholder="직접 입력" onEvent={setIsYear} />
-        ) : (
-          <Select placeholder="Year" options={YearArray} onSelectOption={setIsYear} />
-        )}
+        {isYear === "direct" ? <Input type="number" className="input" placeholder="직접 입력" onEvent={setIsYear} /> : <Select placeholder="Year" options={YearArray} onSelectOption={setIsYear} />}
         <Select placeholder="Type" options={TypeArray} onSelectOption={setIsType} />
         <Button className="btn regular pink" text="Search" onEvent={serachMovies} />
       </div>
