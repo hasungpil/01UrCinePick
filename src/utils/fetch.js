@@ -18,7 +18,7 @@ export const recommendedMovies = async (setValue) => {
 };
 
 // 영화검색
-export const serachMovies = async (movieTitle, isYear, isType) => {
+export const searchMovie = async (movieTitle, isYear, isType) => {
   try {
     const responses = await axios.get(
       `${API}${"&s=" + movieTitle}${"&y=" + isYear}${"&type=" + isType}`

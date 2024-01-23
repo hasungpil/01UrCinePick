@@ -13,7 +13,7 @@
   backdrop-filter: blur(2px);
   overflow: hidden;
   transition: 0.4s;
-  &.--active {
+  &[open] {
     height: 100vh;
   }
   > div {

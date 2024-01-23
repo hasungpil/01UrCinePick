@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { TypeArray, YearArray } from "../../data/detailSearchoptions";
+import { searchMovie } from "../../utils/fetch";
 import Input from "../Common/Input";
 import Select from "../Common/Select";
 import Button from "../Common/Button";
 import "./DetailSearch.scss";
-import { TypeArray, YearArray } from "../../data/detailSearchoptions";
-import { serachMovies } from "../../utils/fetch";
 
 const DetailSearch = () => {
   const [isYear, setIsYear] = useState("");
@@ -29,7 +29,7 @@ const DetailSearch = () => {
         <Button
           className="btn regular pink"
           text="Search"
-          onClick={() => serachMovies(movieTitle, isYear, isType)}
+          onClick={() => searchMovie(movieTitle, isYear, isType)}
         />
       </div>
     </>
