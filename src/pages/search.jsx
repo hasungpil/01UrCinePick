@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import Heading from "../components/Common/Heading";
 import Visual from "../components/Common/Visual";
 import visualImage from "/visual1.webp";

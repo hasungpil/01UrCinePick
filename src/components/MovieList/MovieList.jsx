@@ -18,16 +18,24 @@ const MovieList = ({ type = "gallery" }) => {
     }
   }, [pathname, setMovies]);
 
+  let moviesByPage;
+
+  if (pathname === "/") {
+    moviesByPage = movies.recommendedMovies;
+  } else {
+    moviesByPage = movies.searchMovies;
+  }
+
   // 리스트형태
   const renderMovieList = () => {
     if (type === "fav") {
       return <MovieListFav />;
     } else if (type === "card") {
-      return <MovieListCard movies={movies} />;
+      return <MovieListCard movies={moviesByPage} />;
     } else if (type === "gallery") {
-      return <MovieListGallery movies={movies} />;
+      return <MovieListGallery movies={moviesByPage} />;
     } else if (type === "list") {
-      return <MovieListList movies={movies} />;
+      return <MovieListList movies={moviesByPage} />;
     }
   };
 

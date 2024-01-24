@@ -9,7 +9,12 @@ export const recommendedMovies = async (setMovies) => {
       recommendMovieIds.map((id) => axios.get(`${API}&i=${id}`))
     );
     const movieDataList = apiResponses.map((response) => response.data);
-    setMovies(movieDataList);
+    setMovies((prev) => {
+      return {
+        ...prev,
+        recommendedMovies: movieDataList,
+      };
+    });
   } catch (error) {
     console.log("recommendedMovies Error : ", error);
   }
@@ -23,7 +28,12 @@ export const searchMovies = async ({ title, year, type }, setMovies) => {
     const responses = await axios.get(
       `${API}&s=${title}&y=${validYear}&type=${validType}`
     );
-    setMovies(responses.data.Search);
+    setMovies((prev) => {
+      return {
+        ...prev,
+        searchMovies: responses.data.Search,
+      };
+    });
   } catch (error) {
     console.log("searchMovie Error : ", error);
   }
