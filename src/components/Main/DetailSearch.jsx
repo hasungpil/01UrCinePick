@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Input from "../Common/Input";
 import Select from "../Common/Select";
 import Button from "../Common/Button";
@@ -9,76 +9,44 @@ import { MovieContext } from "../../context/MovieContext";
 import { useNavigate } from "react-router-dom";
 
 const DetailSearch = () => {
-  const [searchData, setSearchData] = useState({
-    title: "",
-    year: "",
-    type: "movie",
-  });
+  const titleRef = useRef();
+  const yearRef = useRef();
+  const typeRef = useRef();
+
+  // 직접입력을 하기 위한 값을 받아내는 state
+  const [selectedYear, setSelectedYear] = useState("");
 
   const { setMovies } = useContext(MovieContext);
   const navigate = useNavigate();
 
-  const isValidDirectInput = searchData.year === "direct";
-
-  function titleChangeHandler(enteredTitle) {
-    setSearchData((prev) => {
-      return {
-        ...prev,
-        title: enteredTitle,
-      };
-    });
-  }
-
-  function yearChangeHandler(enteredYear) {
-    setSearchData((prev) => {
-      return {
-        ...prev,
-        year: enteredYear,
-      };
-    });
-  }
-
-  function typeChangeHandler(enteredType) {
-    setSearchData((prev) => {
-      return {
-        ...prev,
-        type: enteredType,
-      };
-    });
-  }
+  const isValidDirectInput = selectedYear === "direct";
 
   function onSearchHandler() {
+    const searchData = {
+      title: titleRef.current.value,
+      year: yearRef.current.value,
+      type: typeRef.current.value,
+    };
     searchMovies(searchData, setMovies);
     navigate("/search");
   }
 
   return (
     <div className="detail-search">
-      <Input
-        placeholder="영화이름 입력"
-        onChange={(e) => titleChangeHandler(e.target.value)}
-      />
+      <Input ref={titleRef} placeholder="영화이름 입력" />
 
-      {isValidDirectInput && (
-        <Input
-          placeholder="직접 입력"
-          onChange={(e) => yearChangeHandler(e.target.value)}
-        />
-      )}
+      {isValidDirectInput && <Input ref={yearRef} placeholder="직접 입력" />}
 
       {!isValidDirectInput && (
         <Select
+          ref={yearRef}
           placeholder="Year"
           options={YearArray}
-          onChangeOption={yearChangeHandler}
+          onChange={(e) => setSelectedYear(e.target.value)}
         />
       )}
 
-      <Select
-        placeholder="Type"
-        options={TypeArray}
-        onChangeOption={typeChangeHandler}
-      />
+      <Select ref={typeRef} placeholder="Type" options={TypeArray} />
       <Button
         className="btn regular pink"
         text="Search"

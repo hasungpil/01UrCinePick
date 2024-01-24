@@ -3,7 +3,7 @@ import React from "react";
 const MovieListGallery = ({ movies }) => {
   return (
     <>
-      {movies.map((movie) => {
+      {movies?.map((movie) => {
         const posterSize = movie.Poster.replace("X300", "X700");
         return (
           <li key={movie.imdbID} id={movie.imdbID}>

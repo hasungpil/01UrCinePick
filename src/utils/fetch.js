@@ -17,9 +17,11 @@ export const recommendedMovies = async (setMovies) => {
 
 // 영화검색
 export const searchMovies = async ({ title, year, type }, setMovies) => {
+  const validYear = year === "Year" ? "" : year;
+  const validType = type === "Type" ? "" : type;
   try {
     const responses = await axios.get(
-      `${API}&s=${title}&y=${year}&type=${type}`
+      `${API}&s=${title}&y=${validYear}&type=${validType}`
     );
     setMovies(responses.data.Search);
   } catch (error) {

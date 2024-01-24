@@ -21,7 +21,7 @@ const Main = () => {
           <Select
             placeholder="선택하세요"
             options={selectedTypes}
-            onChangeOption={setType}
+            onChange={(e) => setType(e.target.value)}
           />
         </div>
         <MovieList type={type} />

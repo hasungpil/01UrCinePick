@@ -1,10 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "./Select.scss";
 
-const Select = ({ placeholder, options, onChangeOption }) => {
+const Select = forwardRef(function Select(
+  { placeholder, options, ...props },
+  ref
+) {
   return (
     //<div className="align right sort">
-    <select className="select" onChange={(e) => onChangeOption(e.target.value)}>
+    <select ref={ref} className="select" {...props}>
       {placeholder && <option hidden>{placeholder}</option>}
       {options.map(({ value, text }) => (
         <option key={value} value={value}>
@@ -14,6 +17,6 @@ const Select = ({ placeholder, options, onChangeOption }) => {
     </select>
     // </div>
   );
-};
+});
 
 export default Select;
